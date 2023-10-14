@@ -7,6 +7,18 @@ import { getUserProfile } from "@/lib/getData";
 import { UserProfile } from "@/lib/types";
 import { useSearchParams } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Input } from "@/components/ui/input";
 
 export default function Profile({
   params,
@@ -27,6 +39,8 @@ export default function Profile({
     connectWallet,
     getAddress,
   } = useContext(ProviderContext);
+  const [reason, setReason] = useState("");
+  const [test, setTest] = useState(0);
 
   const getProfile = async () => {
     setUserProfile!(await getUserProfile(params.address));
@@ -35,23 +49,28 @@ export default function Profile({
   const handleScan = async () => {
     if (searchParams.scan === "true") {
       try {
-        await newScan(userProfile!.address, params.address);
+        setTimeout(() => {
+          document.getElementById("click")?.click();
+        }, 1000);
       } catch (e) {
         console.log(e);
       }
     }
   };
+
   useEffect(() => {
+    if (test != 1) return;
     if (params.address !== "no-address") {
       handleScan();
     }
-  }, [userProfile]);
+  }, [test]);
 
   useEffect(() => {
     if (params.address !== "no-address") {
       getProfile();
+      setTest(1);
     }
-  }, []);
+  }, [userProfile]);
 
   return (
     <div>
@@ -106,6 +125,33 @@ export default function Profile({
             <span className="web2">Web2</span>
             <span className="web3">Web3</span>
           </div>
+
+          <AlertDialog>
+            <AlertDialogTrigger id="click"></AlertDialogTrigger>
+            <AlertDialogContent className="w-10/12">
+              <AlertDialogHeader>
+                <AlertDialogTitle>Why did you scan me?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  <Input
+                    placeholder="Optional reason"
+                    onChange={(e) => {
+                      setReason(e.target.value);
+                    }}
+                  ></Input>
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction
+                  onClick={async () => {
+                    await newScan(userProfile.address, params.address, reason);
+                  }}
+                >
+                  Continue
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       )}
     </div>
