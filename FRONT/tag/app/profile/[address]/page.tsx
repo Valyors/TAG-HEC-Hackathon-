@@ -118,13 +118,7 @@ export default function Profile({
             <div className="relative">
               <h1>{userProfile?.username}</h1>
               <h2 className="text-md text-white">{userProfile?.description}</h2>
-              {userProfile?.added_address && (
-                <h3 className="text-xs italic text-white">
-                  {userProfile?.added_address?.slice(0, 5) +
-                    "..." +
-                    userProfile?.added_address?.slice(-5)}
-                </h3>
-              )}
+
               <AlertDialog>
                 <AlertDialogTrigger>
                   <Settings

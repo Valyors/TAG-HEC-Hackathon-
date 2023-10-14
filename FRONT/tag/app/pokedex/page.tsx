@@ -30,7 +30,22 @@ export default function Pokedex() {
       </div>
 
       <div className="list-pokedex h-screen overflow-y-auto pb-20 mt-5">
-        {scans.length > 0 &&
+        <div className="text-white bg-white/10 rounded-lg p-2 mb-2">
+          Leo C. scanned you
+        </div>
+        <div className="text-white bg-white/10 rounded-lg p-2 mb-2">
+          Martin B. scanned you
+        </div>
+        <div className="text-white bg-white/10 rounded-lg p-2 mb-2">
+          You scanned Valentin D. Note: HEC Hackathon, works on TwitterCoin
+        </div>
+        <div className="text-white bg-white/10 rounded-lg p-2 mb-2">
+          You scanned Leo C. Note: Student, working on Alpha Wallet Drainer
+        </div>
+        <div className="text-white bg-white/10 rounded-lg p-2 mb-2">
+          Pablo E. scanned you
+        </div>
+        {/* {scans.length > 0 &&
           // reverse
           scans
             .slice(0)
@@ -58,7 +73,7 @@ export default function Pokedex() {
                   {scan.reason && " Reason: " + scan.reason}
                 </div>
               );
-            })}
+            })} */}
         {scans.length === 0 && (
           <p className="text-center text-white">No scans yet</p>
         )}
