@@ -1,0 +1,84 @@
+/*************** fonts *******************/
+@font-face {
+    font-family: 'Montserrat';
+    src: url('fonts/Montserrat/static/Montserrat-Regular.ttf');
+}
+/*************** profil *******************/
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    background-color: #0d0d0d;
+}
+.pokedex_profil{
+    display: flex;
+    padding: 30px 20px;
+    background: rgb(234,49,198);
+    background: linear-gradient(90deg, rgba(234,49,198,1) 0%, rgba(0,33,215,1) 100%);
+    border-radius: 45px;
+    margin: 25px;
+}
+.photo_profil_pokedex{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+.pokedex_profil h1{
+    color: #fff;
+    font-size: 30px;
+    margin: 0px;
+    font-family: 'Montserrat';
+}
+.pokedex_profil h2{
+    color: #fff;
+    font-size: 20px;
+    margin: 0px;
+    font-family: 'Montserrat';
+}
+span{
+    border: 1px solid #ea31c6;
+    padding: 5px 50px;
+    color: #ea31c6;
+    font-family: 'Montserrat';
+}
+.web2{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 0;
+}
+.web3{
+    border-top-left-radius: 0px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 5px;
+}
+span:hover{
+    background-color: #ea31c6;
+    color: #fff;
+}
+
+
+/**************** navbar ****************/
+nav{
+    display: flex;
+    position: fixed;
+    bottom: 0;
+}
+.nav-icon{
+    width: 50px;
+    margin: 0px 30px;
+}
+.nav-icon:hover{
+    background-color: #ea31c6;
+    border-radius: 50%;
+}
+
+/* charte graphique, couleur*/
+p{
+    color: #ea31c6
+    #0021d7
+    #0d0d0d;
+}
