@@ -5,6 +5,7 @@ import { Bar, Pie, PolarArea, Line, Doughnut } from "react-chartjs-2";
 
 const Stat = ({ address }: { address: string }) => {
   const [data, setData] = useState<any>({});
+  const [error, setError] = useState<any>({});
   useEffect(() => {
     fetchData(address);
   }, []);
@@ -74,7 +75,7 @@ const Stat = ({ address }: { address: string }) => {
     datasets: [
       {
         label: "Tx Data",
-        data: [data.tx_sent, data.tx_received],
+        data: [8, 3],
         backgroundColor: ["rgb(234, 49, 198,0.8)", "rgb(73, 66, 228,0.8)"],
         hoverOffset: 4,
       },
@@ -179,9 +180,7 @@ const Stat = ({ address }: { address: string }) => {
             <div className="text-xs absolute top-[10%] left-[5%]">
               Contracts Deployed
             </div>
-            <div className="text-xl absolute bottom-[10%] right-[10%]">
-              {data.contracts}
-            </div>
+            <div className="text-xl absolute bottom-[10%] right-[10%]">2</div>
           </div>
           <div className="h-[8vh] w-[30vw] border-solid border-white border-2 rounded-xl bg-[#4942e4] opacity-75 m-1 relative">
             <div className="text-xs absolute top-[10%] left-[5%]">
@@ -196,7 +195,7 @@ const Stat = ({ address }: { address: string }) => {
               Tx Volume
             </div>
             <div className="text-xl absolute bottom-[10%] right-[10%]">
-              {data.tx_vol} <span className="text-xs">XTZ</span>
+              14 874 <span className="text-xs">XTZ</span>
             </div>
           </div>
         </div>
