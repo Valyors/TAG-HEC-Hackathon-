@@ -2,7 +2,6 @@
 import Nav from "@/components/nav";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import PeopleProvider from "@/components/people-provider";
 import Provider from "@/components/provider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,10 +22,8 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Provider>
-          <PeopleProvider>
-            {children}
-            <Nav />
-          </PeopleProvider>
+          {children}
+          <Nav />
         </Provider>
       </body>
     </html>

@@ -1,9 +1,6 @@
-"use client"
-import React,{useContext,useEffect,useState} from 'react';
-import {PeopleContext} from '@/components/people-provider';
-import ProfileCard from '@/components/profile-card';
+"use client";
+import React, { useContext, useEffect, useState } from "react";
 export default function Pokedex() {
-  const {peopleArray,setPeopleArray} = useContext(PeopleContext);
   return (
     <div className="w-full">
       <div id="rechercher">
@@ -16,11 +13,11 @@ export default function Pokedex() {
       </div>
 
       <div className="list-pokedex h-screen overflow-y-auto pb-20">
-        {peopleArray.map((item) => (
+        {/* {peopleArray.map((item) => (
           <>
           <ProfileCard key={item.address} people={item}/>
           </>
-        ))}
+        ))} */}
       </div>
     </div>
   );

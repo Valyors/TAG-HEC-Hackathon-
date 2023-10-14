@@ -2,15 +2,21 @@
 import { ProviderContext } from "@/components/provider";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { newScan } from "@/lib/addData";
 import { getUserProfile } from "@/lib/getData";
 import { UserProfile } from "@/lib/types";
+import { useSearchParams } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
 export default function Profile({
   params,
+  searchParams,
 }: {
   params: {
     address: string;
+  };
+  searchParams: {
+    scan: string;
   };
 }) {
   const {
@@ -25,6 +31,21 @@ export default function Profile({
   const getProfile = async () => {
     setUserProfile!(await getUserProfile(params.address));
   };
+
+  const handleScan = async () => {
+    if (searchParams.scan === "true") {
+      try {
+        await newScan(userProfile!.address, params.address);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
+  useEffect(() => {
+    if (params.address !== "no-address") {
+      handleScan();
+    }
+  }, [userProfile]);
 
   useEffect(() => {
     if (params.address !== "no-address") {

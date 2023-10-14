@@ -16,7 +16,6 @@
     "@supabase/supabase-js": "^2.38.1",
     "@taquito/beacon-wallet": "^17.3.2",
     "@taquito/taquito": "^17.3.2",
-    "@yudiel/react-qr-scanner": "^1.1.10",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "dotenv": "^16.3.1",

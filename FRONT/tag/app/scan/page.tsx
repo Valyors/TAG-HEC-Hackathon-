@@ -1,16 +1,25 @@
 "use client";
-import { QrScanner } from "@yudiel/react-qr-scanner";
-import { useState } from "react";
+import { ProviderContext } from "@/components/provider";
+import { useState, useContext } from "react";
 
 export default function Scan() {
-  const [data, setData] = useState("No resul t");
+  const { userProfile } = useContext(ProviderContext);
 
   return (
     <>
-      <QrScanner
-        onDecode={(result) => console.log(result)}
-        onError={(error) => console.log(error?.message)}
-      />
+      {userProfile?.address && (
+        <div className="h-full flex items-center flex-col justify-center">
+          <h1 className="text-4xl mb-5 text-white font-bold">TAG ME!</h1>
+          <img
+            src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${
+              process.env.NEXT_PUBLIC_URL +
+              "profile/" +
+              userProfile?.address +
+              "?scan=true"
+            }`}
+          />
+        </div>
+      )}
     </>
   );
 }
