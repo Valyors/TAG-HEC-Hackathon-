@@ -3,6 +3,7 @@ import { ProviderContext } from "@/components/provider";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useContext, useEffect, useState } from "react";
+import Stat from "@/components/stat-component";
 
 export default function Profile({
   params,
@@ -13,6 +14,8 @@ export default function Profile({
 }) {
   const { connected, wallet, connectWallet, getAddress } =
     useContext(ProviderContext);
+
+  const [tab, setTab] = useState(true);
 
   return (
     <div>
@@ -60,9 +63,19 @@ export default function Profile({
           </div>
 
           <div className="nav-web">
-            <span className="web2">Web2</span>
-            <span className="web3">Web3</span>
+            <span className="web2" onClick={() => setTab(true)}>Web2</span>
+            <span className="web3" onClick={() => setTab(false)}>Web3</span>
           </div>
+            {tab &&(
+              <div className="">
+                web 2 tab
+              </div>
+            )}
+            {!tab &&(
+              <div className="">
+                <Stat address={"tz1SBmmQxuZV75oLSmfC9GkEmjYQUiXVzGc8"} />
+              </div>
+            )}
         </div>
       )}
     </div>

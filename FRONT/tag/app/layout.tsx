@@ -22,15 +22,9 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Pokedex" />
       </head>
       <body className={inter.className}>
-            {children}
-            <Nav/>
         <Provider>
-        <PeopleProvider>
-
           {children}
           <Nav />
-        </PeopleProvider>
-
         </Provider>
       </body>
     </html>

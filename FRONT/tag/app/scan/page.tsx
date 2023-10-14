@@ -6,7 +6,6 @@ import QRCode from "react-qr-code";
 import {Html5QrcodeScanner} from 'html5-qrcode'
 
 const page = () => {
-    const {peopleArray,setPeopleArray} = useContext(PeopleContext);
     const [scanResult, setScanResult] = useState(null);
     const [scanning, setScanning] = useState(false);
     const [loading, setLoading] = useState(true);
