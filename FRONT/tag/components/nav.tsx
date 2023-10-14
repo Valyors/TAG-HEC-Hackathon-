@@ -1,6 +1,6 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useContext, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useContext, useEffect, useState } from "react";
 import { ProviderContext } from "./provider";
 import { List, Camera, User } from "lucide-react";
 
@@ -13,7 +13,6 @@ export default function Nav() {
   getAddress!().then((address) => {
     setAddress(address);
   });
-
   return (
     <nav className="max-w-md bg-black/90 w-full justify-evenly text-purple-500 py-3">
       <a
