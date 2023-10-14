@@ -7,6 +7,7 @@ export const createUserProfile = async (
   description?: string,
   added_address?: string
 ) => {
+  console.log({ test: await getUserProfile(address) });
   if ((await getUserProfile(address)) !== undefined) {
     return;
   }

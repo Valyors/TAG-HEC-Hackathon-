@@ -13,12 +13,17 @@ export default function Profile({
     address: string;
   };
 }) {
-  const [user, setUser] = useState<UserProfile>();
-  const { connected, wallet, connectWallet, getAddress } =
-    useContext(ProviderContext);
+  const {
+    connected,
+    wallet,
+    userProfile,
+    setUserProfile,
+    connectWallet,
+    getAddress,
+  } = useContext(ProviderContext);
 
   const getProfile = async () => {
-    setUser(await getUserProfile(params.address));
+    setUserProfile!(await getUserProfile(params.address));
   };
 
   useEffect(() => {
@@ -53,7 +58,7 @@ export default function Profile({
         )}
       </div>
 
-      {params.address === "no-address" || !user ? (
+      {params.address === "no-address" || !userProfile ? (
         ""
       ) : (
         <div>
@@ -64,13 +69,13 @@ export default function Profile({
               alt="profil"
             />
             <div>
-              <h1>{user?.username}</h1>
-              <h2 className="text-md text-white">{user?.description}</h2>
-              {user?.added_address && (
+              <h1>{userProfile?.username}</h1>
+              <h2 className="text-md text-white">{userProfile?.description}</h2>
+              {userProfile?.added_address && (
                 <h3 className="text-xs italic text-white">
-                  {user?.added_address?.slice(0, 5) +
+                  {userProfile?.added_address?.slice(0, 5) +
                     "..." +
-                    user?.added_address?.slice(-5)}
+                    userProfile?.added_address?.slice(-5)}
                 </h3>
               )}
             </div>

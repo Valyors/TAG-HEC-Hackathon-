@@ -6,6 +6,7 @@ import { createContext, useEffect, useState } from "react";
 import { BeaconWallet } from "@taquito/beacon-wallet";
 import { TezosToolkit } from "@taquito/taquito";
 import { createUserProfile } from "@/lib/addData";
+import { UserProfile } from "@/lib/types";
 
 export const ProviderContext = createContext<{
   wallet?: BeaconWallet;
@@ -16,6 +17,10 @@ export const ProviderContext = createContext<{
   }>;
   disconnectWallet?: () => Promise<void>;
   getAddress?: () => Promise<string | undefined>;
+  userProfile?: UserProfile;
+  setUserProfile?: React.Dispatch<
+    React.SetStateAction<UserProfile | undefined>
+  >;
 }>({});
 
 export default function Provider({ children }: { children: React.ReactNode }) {
@@ -23,6 +28,7 @@ export default function Provider({ children }: { children: React.ReactNode }) {
 
   const [wallet, setWallet] = useState(new BeaconWallet({ name: "Ghostnet" }));
   const [connected, setConnected] = useState(false);
+  const [userProfile, setUserProfile] = useState<UserProfile>();
 
   const connectWallet = async () => {
     let account = await wallet.client.getActiveAccount();
@@ -63,6 +69,8 @@ export default function Provider({ children }: { children: React.ReactNode }) {
         connectWallet,
         disconnectWallet,
         getAddress,
+        userProfile,
+        setUserProfile,
       }}
     >
       {children}
