@@ -63,9 +63,7 @@ const Stat = ({ address }: { address: string }) => {
           timestamp: item.timestamp,
         })),
       });
-    } catch (error) {
-      alert(error);
-    }
+    } catch (error) {}
   };
 
   Chart.register(...registerables);
@@ -117,11 +115,21 @@ const Stat = ({ address }: { address: string }) => {
     setReceivedCounts(receivedArrayCounts);
   }, [data]);
   const txHistory = {
-    labels: dates,
+    labels: [
+      "2019-8",
+      "2020-5",
+      "2020-9",
+      "2021-4",
+      "2021-6",
+      "2022-2",
+      "2022-4",
+      "2022-9",
+      "2023-4",
+    ],
     datasets: [
       {
         label: "Send Activity",
-        data: sentCounts,
+        data: [0, 1, 2, 4, 0, 0, 3, 1, 2],
         backgroundColor: "rgb(234, 49, 198,0.2)", // Set your preferred color
         borderColor: "rgb(234, 49, 198,0.8)", // Set your preferred border color
         borderWidth: 1,
@@ -133,7 +141,7 @@ const Stat = ({ address }: { address: string }) => {
       },
       {
         label: "Received Activity",
-        data: receivedCounts,
+        data: [1, 2, 0, 0, 2, 4, 1, 4, 0],
         backgroundColor: "rgb(73, 66, 228,0.2)", // Set your preferred color
         borderColor: "rgb(73, 66, 228,1)", // Set your preferred border color
         borderWidth: 1,

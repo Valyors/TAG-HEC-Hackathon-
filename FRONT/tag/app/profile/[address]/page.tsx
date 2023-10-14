@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { newScan } from "@/lib/addData";
 import { getUserProfile } from "@/lib/getData";
 import { UserProfile } from "@/lib/types";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import {
   AlertDialog,
@@ -41,6 +41,7 @@ export default function Profile({
     connectWallet,
     getAddress,
   } = useContext(ProviderContext);
+  const router = useRouter();
   const [reason, setReason] = useState("");
   const [test, setTest] = useState(0);
   const [username, setUsername] = useState("");
@@ -98,7 +99,7 @@ export default function Profile({
             className="mx-auto bg-purple-700"
             onClick={async () => {
               await connectWallet!();
-              window.location.href = `/profile/${await getAddress!()}`;
+              window.location.href = `/pokedex`;
             }}
           >
             Login
