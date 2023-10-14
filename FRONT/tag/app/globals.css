@@ -130,16 +130,6 @@
   font-size: 30px;
   margin: 0px;
 }
-.pokedex_profil h2 {
-  color: #fff;
-  font-size: 20px;
-  margin: 0px;
-}
-.pokedex_profil h3 {
-  color: rgb(174, 174, 174);
-  font-size: 15px;
-  margin: 0px;
-}
 .nav-web {
   display: flex;
   justify-content: center;
@@ -213,6 +203,8 @@ nav {
 #rechercher {
   display: flex;
   justify-content: center;
+  padding: 10px 0;
+  background: transparent;
 }
 .barre_recherche {
   padding: 5px;
