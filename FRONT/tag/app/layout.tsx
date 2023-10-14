@@ -2,7 +2,7 @@
 import Nav from "@/components/nav";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import PeopleProvider from "@/components/people-provider"
+import PeopleProvider from "@/components/people-provider";
 import Provider from "@/components/provider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,15 +22,11 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Pokedex" />
       </head>
       <body className={inter.className}>
-            {children}
-            <Nav/>
         <Provider>
-        <PeopleProvider>
-
-          {children}
-          <Nav />
-        </PeopleProvider>
-
+          <PeopleProvider>
+            {children}
+            <Nav />
+          </PeopleProvider>
         </Provider>
       </body>
     </html>
