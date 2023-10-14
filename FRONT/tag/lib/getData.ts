@@ -11,3 +11,15 @@ export const getUserProfile = async (address: string): Promise<UserProfile> => {
   }
   return data[0];
 };
+
+export const getScans = async (address: string) => {
+  const { data, error } = await supabase
+    .from("scans")
+    .select("*")
+    .or(`scanner.eq.${address}`)
+    .or(`scanned.eq.${address}`);
+  if (error) {
+    throw error;
+  }
+  return data;
+};
