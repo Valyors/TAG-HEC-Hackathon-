@@ -2,7 +2,6 @@
 import React,{useContext,useEffect,useState} from 'react';
 import {PeopleContext} from '@/components/people-provider';
 import ProfileCard from '@/components/profile-card';
-
 export default function Pokedex() {
   const {peopleArray,setPeopleArray} = useContext(PeopleContext);
   return (

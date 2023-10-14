@@ -1,19 +1,39 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { useContext, useState } from "react";
+import { ProviderContext } from "./provider";
+import { List, Camera, User } from "lucide-react";
 
 export default function Nav() {
   const router = useRouter();
+  const { getAddress } = useContext(ProviderContext);
+  const [address, setAddress] = useState<string | undefined>(undefined);
+  const [tab, setTab] = useState<"pokedex" | "scan" | "profile">("scan");
+
+  getAddress!().then((address) => {
+    setAddress(address);
+  });
 
   return (
-    <nav className="profile-nav">
-      <a onClick={() => router.push("/pokedex")} className="cursor-pointer">
-        <img className="nav-icon" src="pokedex-navbar.png" alt="" />
+    <nav className="bg-black/90 w-full justify-evenly text-purple-500 py-3">
+      <a
+        onClick={() => {
+          router.push("/pokedex");
+        }}
+        className="cursor-pointer"
+      >
+        <List size={24} />
       </a>
       <a onClick={() => router.push("/scan")} className="cursor-pointer">
-        <img className="nav-icon" src="navbar_qr-code.png" alt="" />
+        <Camera />
       </a>
-      <a onClick={() => router.push("/profile")} className="cursor-pointer">
-        <img className="nav-icon" src="navbar_profil.png" alt="" />
+      <a
+        onClick={() =>
+          router.push(`/profile/${address ? address : "no-address"}`)
+        }
+        className="cursor-pointer"
+      >
+        <User size={24} />
       </a>
     </nav>
   );
