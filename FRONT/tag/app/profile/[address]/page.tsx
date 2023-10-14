@@ -2,6 +2,8 @@
 import { ProviderContext } from "@/components/provider";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { getUserProfile } from "@/lib/getData";
+import { UserProfile } from "@/lib/types";
 import { useContext, useEffect, useState } from "react";
 
 export default function Profile({
@@ -11,8 +13,19 @@ export default function Profile({
     address: string;
   };
 }) {
+  const [user, setUser] = useState<UserProfile>();
   const { connected, wallet, connectWallet, getAddress } =
     useContext(ProviderContext);
+
+  const getProfile = async () => {
+    setUser(await getUserProfile(params.address));
+  };
+
+  useEffect(() => {
+    if (params.address !== "no-address") {
+      getProfile();
+    }
+  }, []);
 
   return (
     <div>
@@ -40,22 +53,26 @@ export default function Profile({
         )}
       </div>
 
-      {params.address === "no-address" ? (
+      {params.address === "no-address" || !user ? (
         ""
       ) : (
         <div>
           <div className="pokedex_profil">
             <img
               className="photo_profil_pokedex"
-              src="/Laury.webp"
+              src={"https://robohash.org/" + params.address}
               alt="profil"
             />
             <div>
-              <h1>Laury Jacot</h1>
-              <h2 className="text-md text-white">Web3 Marketing</h2>
-              <h3 className="text-xs italic text-white">
-                {params.address.slice(0, 5) + "..." + params.address.slice(-5)}
-              </h3>
+              <h1>{user?.username}</h1>
+              <h2 className="text-md text-white">{user?.description}</h2>
+              {user?.added_address && (
+                <h3 className="text-xs italic text-white">
+                  {user?.added_address?.slice(0, 5) +
+                    "..." +
+                    user?.added_address?.slice(-5)}
+                </h3>
+              )}
             </div>
           </div>
 

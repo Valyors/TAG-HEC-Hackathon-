@@ -1,0 +1,21 @@
+import { getUserProfile } from "./getData";
+import { supabase } from "./supabase";
+
+export const createUserProfile = async (
+  address: string,
+  username?: string,
+  description?: string,
+  added_address?: string
+) => {
+  if ((await getUserProfile(address)) !== undefined) {
+    return;
+  }
+  await supabase.from("profile").insert([
+    {
+      address,
+      username,
+      description,
+      added_address,
+    },
+  ]);
+};

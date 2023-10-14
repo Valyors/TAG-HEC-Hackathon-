@@ -5,6 +5,7 @@ import { createContext, useEffect, useState } from "react";
 
 import { BeaconWallet } from "@taquito/beacon-wallet";
 import { TezosToolkit } from "@taquito/taquito";
+import { createUserProfile } from "@/lib/addData";
 
 export const ProviderContext = createContext<{
   wallet?: BeaconWallet;
@@ -29,7 +30,7 @@ export default function Provider({ children }: { children: React.ReactNode }) {
       await wallet.requestPermissions();
       account = await wallet.client.getActiveAccount();
     }
-    setConnected(true);
+    await createUserProfile(account!.address);
     return { success: true, wallet: account?.address };
   };
 
@@ -47,6 +48,12 @@ export default function Provider({ children }: { children: React.ReactNode }) {
     const account = await wallet.client.getActiveAccount();
     return account?.address;
   };
+
+  useEffect(() => {
+    (async () => {
+      setConnected(await isWalletConnected());
+    })();
+  }, [wallet]);
 
   return (
     <ProviderContext.Provider

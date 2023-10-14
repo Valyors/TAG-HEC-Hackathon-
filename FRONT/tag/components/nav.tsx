@@ -15,7 +15,7 @@ export default function Nav() {
   });
 
   return (
-    <nav className="bg-black/90 w-full justify-evenly text-purple-500 py-3">
+    <nav className="max-w-md bg-black/90 w-full justify-evenly text-purple-500 py-3">
       <a
         onClick={() => {
           router.push("/pokedex");

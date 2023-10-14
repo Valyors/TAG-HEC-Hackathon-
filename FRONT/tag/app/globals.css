@@ -1,4 +1,4 @@
-  @tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -284,4 +284,8 @@ body {
     rgba(0, 33, 215, 1) 100%
   );
   border-radius: 15px;
+}
+
+.reader * {
+  color: white;
 }
