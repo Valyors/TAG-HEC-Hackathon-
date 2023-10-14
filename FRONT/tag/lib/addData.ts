@@ -20,3 +20,12 @@ export const createUserProfile = async (
     },
   ]);
 };
+
+export const newScan = async (scanner: string, scanned: string) => {
+  await supabase.from("scans").insert([
+    {
+      scanner,
+      scanned,
+    },
+  ]);
+};
