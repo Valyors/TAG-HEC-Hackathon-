@@ -1,13 +1,18 @@
+"use client";
+import { useRouter } from "next/navigation";
+
 export default function Nav() {
+  const router = useRouter();
+
   return (
     <nav className="profile-nav">
-      <a href="pokedex.html">
+      <a onClick={() => router.push("/pokedex")} className="cursor-pointer">
         <img className="nav-icon" src="pokedex-navbar.png" alt="" />
       </a>
-      <a href="index.html">
+      <a onClick={() => router.push("/scan")} className="cursor-pointer">
         <img className="nav-icon" src="navbar_qr-code.png" alt="" />
       </a>
-      <a href="profil.html">
+      <a onClick={() => router.push("/profile")} className="cursor-pointer">
         <img className="nav-icon" src="navbar_profil.png" alt="" />
       </a>
     </nav>
