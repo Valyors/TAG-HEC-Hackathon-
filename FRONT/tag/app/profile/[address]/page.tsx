@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Input } from "@/components/ui/input";
 import { Link, Settings } from "lucide-react";
+import Stat from "@/components/stat-component";
 
 export default function Profile({
   params,
@@ -193,7 +194,7 @@ export default function Profile({
               </div>
             </div>
           ) : (
-            ""
+            <Stat address={"tz1SBmmQxuZV75oLSmfC9GkEmjYQUiXVzGc8"} />
           )}
           <AlertDialog>
             <AlertDialogTrigger id="click"></AlertDialogTrigger>
