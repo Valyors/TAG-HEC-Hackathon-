@@ -3,7 +3,7 @@ import { QrScanner } from "@yudiel/react-qr-scanner";
 import { useState } from "react";
 
 export default function Scan() {
-  const [data, setData] = useState("No result");
+  const [data, setData] = useState("No resul t");
 
   return (
     <>
