@@ -19,6 +19,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Input } from "@/components/ui/input";
+import { Link, Settings } from "lucide-react";
 
 export default function Profile({
   params,
@@ -41,6 +42,10 @@ export default function Profile({
   } = useContext(ProviderContext);
   const [reason, setReason] = useState("");
   const [test, setTest] = useState(0);
+  const [username, setUsername] = useState("");
+  const [description, setDescription] = useState("");
+  const [address, setAddress] = useState("");
+  const [tab, setTab] = useState(0);
 
   const getProfile = async () => {
     setUserProfile!(await getUserProfile(params.address));
@@ -57,6 +62,8 @@ export default function Profile({
       }
     }
   };
+
+  const saveSettings = async () => {};
 
   useEffect(() => {
     if (test != 1) return;
@@ -108,7 +115,7 @@ export default function Profile({
               src={"https://robohash.org/" + params.address}
               alt="profil"
             />
-            <div>
+            <div className="relative">
               <h1>{userProfile?.username}</h1>
               <h2 className="text-md text-white">{userProfile?.description}</h2>
               {userProfile?.added_address && (
@@ -118,14 +125,82 @@ export default function Profile({
                     userProfile?.added_address?.slice(-5)}
                 </h3>
               )}
+              <AlertDialog>
+                <AlertDialogTrigger>
+                  <Settings
+                    className="absolute bottom-0 left-[100px]"
+                    size={24}
+                  />
+                </AlertDialogTrigger>
+                <AlertDialogContent className="w-10/12">
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>
+                      Tell us a little bit about yourself
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      <Input
+                        className="mb-2"
+                        placeholder="Username"
+                        onChange={(e) => {
+                          setUsername(e.target.value);
+                        }}
+                      ></Input>
+                      <Input
+                        className="mb-2"
+                        placeholder="Description"
+                        onChange={(e) => {
+                          setDescription(e.target.value);
+                        }}
+                      ></Input>
+                      <Input
+                        placeholder="Main Address"
+                        onChange={(e) => {
+                          setAddress(e.target.value);
+                        }}
+                      ></Input>
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction>Continue</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </div>
           </div>
 
           <div className="nav-web">
-            <span className="web2">Web2</span>
-            <span className="web3">Web3</span>
+            <span className="web2" onClick={() => setTab(0)}>
+              Web2
+            </span>
+            <span className="web3" onClick={() => setTab(1)}>
+              Web3
+            </span>
           </div>
 
+          {tab === 0 ? (
+            <div>
+              <div className="bg-white/10 rounded-xl p-3 px-5 my-5 flex items-center">
+                <h1 className="mr-2">Twitter</h1>
+                <Link size={15} className="mr-5" />
+                <p className="ml-auto text-sm text-purple-500">Favorite</p>
+              </div>
+              <div className="bg-white/10 rounded-xl p-3 px-5 my-3 flex items-center">
+                <h1 className="mr-2">Linkedin</h1>
+                <Link size={15} />
+              </div>
+              <div className="bg-white/10 rounded-xl p-3 px-5 my-3 flex items-center">
+                <h1 className="mr-2">Telegram</h1>
+                <Link size={15} />
+              </div>
+              <div className="bg-white/10 rounded-xl p-3 px-5 my-3 flex items-center">
+                <h1 className="mr-2">Discord</h1>
+                <Link size={15} />
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
           <AlertDialog>
             <AlertDialogTrigger id="click"></AlertDialogTrigger>
             <AlertDialogContent className="w-10/12">
